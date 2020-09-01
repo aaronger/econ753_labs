@@ -10,7 +10,7 @@ library(Hmisc) ## For some nicely formatted summary stats
 ## Set some options scipen controls scientific notation versus
 ## decimals (higher number = favor decimals over scientific notation)
 ## width controls the column width of output
-options(scipen=1000,width=200)
+options(scipen=1000)
 
 ## Some work with the 1978 and 1985 CPS (Berndt, Chapter 5)
 cps <- read_dta("http://courses.umass.edu/econ753/berndt/stata/chap5-cps.dta")
