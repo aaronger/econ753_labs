@@ -18,6 +18,7 @@ cps <- read_dta("http://courses.umass.edu/econ753/berndt/stata/chap5-cps.dta")
 ## list variables
 names(cps)
 
+
 ## Basic summary statistics
 summary(cps)
 describe(cps)
@@ -26,22 +27,21 @@ cps$ed
 mean(cps$ed)
 sd(cps$ed)
 
+table(cps$ed)
 stem(cps$ed)
-stem(cps$lnwage)
 
-stem(exp(cps$lnwage))
+## Tukey stem-and-leaf plot
+stem(cps$lnwage, scale=2, width=125)
+
+stem(exp(cps$lnwage), scale=2, width=125)
 mean(exp(cps$lnwage))
 sd(exp(cps$lnwage))
 
-
 ## Some tabulation commands
-## and "with"
-
+## and "with" and data= to specify the dataset
 with(cps, table(as_factor(occupation),fe))
 xtabs(~ as_factor(occupation) + fe, data=cps)
 summary(xtabs(~ as_factor(occupation) + fe, data=cps))
-
-xtabs(~ as_factor(occupation) + fe + year, data=cps)
 
 xtabs(~ as_factor(occupation) + fe + year, data=cps)
 
@@ -69,13 +69,13 @@ ggplot(cps, aes(x=ed, y=exp(lnwage))) + geom_point(aes(color=factor(fe))) +
   geom_smooth(method="lm")
 
 
+
 ## Create datasets limited to 1985 and 1978
 cps85 <- filter(cps,year==1985)
 cps78 <- filter(cps,year==1978)
 
-## List the objects in R (should be three)
+## List the objects in R (there should be three)
 ls()
-
 
 
 cps85.lm <- lm(lnwage ~ fe + marr + nonwh + ed + ex + exsq, data=cps85)
@@ -84,7 +84,6 @@ summary(cps85.lm)
 ## Heteroskedasticity-consistent (robust) standard errors (equivalent to ", robust" in Stata)
 coeftest(cps85.lm,vcov=vcovHC(cps85.lm,type="HC1"))
        
-
 
 ## Pooled and unpooled regressions (with interaction terms)
 cps.pooled.lm <- lm(lnwage ~ fe + marr + nonwh + ed + ex + exsq, data=cps85)
