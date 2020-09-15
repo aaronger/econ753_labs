@@ -61,10 +61,12 @@ cps <- mutate(cps,
               )
 
 
-ggplot(cps, aes(x=factor(fe), y=lnwage)) + geom_bar(stat="summary", fun.y="mean")
-ggplot(cps, aes(x=factor(fe), y=exp(lnwage), fill=factor(fe))) + geom_bar(stat="summary", fun.y="mean")
+ggplot(cps, aes(x=factor(fe), y=lnwage)) + geom_bar(stat="summary", fun=mean)
+ggplot(cps, aes(x=factor(fe), y=exp(lnwage), fill=factor(fe))) + 
+  geom_bar(stat="summary", fun=mean)
 
-ggplot(cps, aes(x=ed, y=exp(lnwage))) + geom_point(aes(color=factor(fe))) + geom_smooth(method="lm")
+ggplot(cps, aes(x=ed, y=exp(lnwage))) + geom_point(aes(color=factor(fe))) + 
+  geom_smooth(method="lm")
 
 
 ## Create datasets limited to 1985 and 1978
@@ -81,7 +83,7 @@ cps85.lm <- lm(lnwage ~ fe + marr + nonwh + ed + ex + exsq, data=cps85)
 summary(cps85.lm)
 ## Heteroskedasticity-consistent (robust) standard errors (equivalent to ", robust" in Stata)
 coeftest(cps85.lm,vcov=vcovHC(cps85.lm,type="HC1"))
-
+       
 
 
 ## Pooled and unpooled regressions (with interaction terms)
