@@ -1,4 +1,4 @@
-pdf(file="public-debt-time-series.pdf",family="Times",paper="USr",width=0,height=0)
+#pdf(file="public-debt-time-series.pdf",family="Times",paper="USr",width=0,height=0)
 library(dplyr)
 options(dplyr.print_max = 1e9,dplyr.width = Inf)
 library(ggplot2)
@@ -12,7 +12,7 @@ rm(list=ls())
 
 ## Look at the public debt / GDP series
 
-data_here  <- read_dta(file="DATA-3.dta")
+data_here  <- read_dta(file="lab-04-visualization/DATA-3.dta")
 data_here  <- mutate(data_here,
                   Year = year,
                   debtgdp_here = debtgdp_mauro,

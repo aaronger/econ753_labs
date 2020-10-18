@@ -1,7 +1,7 @@
 library(tidyverse)  ## include dplyr
 library(haven)      ## read dta files, etc.
 
-cps  <- read_dta("chap5-cps.dta")
+cps  <- read_dta("lab-07-wage-models/chap5-cps.dta")
 
 with(cps, table(year))
 

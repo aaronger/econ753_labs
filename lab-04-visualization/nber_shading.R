@@ -1,4 +1,4 @@
-pdf(file="nber_shading.pdf", paper="USr", height=0, width=0)
+#pdf(file="nber_shading.pdf", paper="USr", height=0, width=0)
 
 ## Demonstrate
 ## downloading series from FRED
